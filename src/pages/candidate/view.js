@@ -6,7 +6,7 @@ import {
 	Paper,
 	Typography,
 } from "@material-ui/core";
-import { Attachment, Work } from "@material-ui/icons";
+import { Attachment, Room, Work } from "@material-ui/icons";
 import React from "react";
 
 const CandidateView = ({ data = [], loading }) => {
@@ -31,7 +31,7 @@ const CandidateView = ({ data = [], loading }) => {
 							{data.name}
 						</Typography>
 					</Grid>
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12} md={6} lg={4}>
 						<Typography color="primary" style={{ color: "grey" }}>
 							{data.email}
 						</Typography>
@@ -39,6 +39,12 @@ const CandidateView = ({ data = [], loading }) => {
 					<Grid item xs={12} md={6}>
 						<Typography style={{ color: "grey" }}>
 							{data.phone}
+						</Typography>
+					</Grid>
+					<Grid item xs={12} md={6}>
+						<Typography style={{ color: "grey", margin: "5px 0" }}>
+							<Room style={{ marginBottom: "-7px" }} />
+							{data.address}
 						</Typography>
 					</Grid>
 					<Grid item xs={12}>
