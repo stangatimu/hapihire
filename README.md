@@ -34,4 +34,4 @@ All set!!!
    As at the moment the application is fetching a lot of data from the backend that is only need when a certain candidate is selected. Using GrapgQL and be able to only select the date that is needed for a particular view from the backed can greatly increate the loading time,
    Also GraphQL(Apollo) comes with inbuilt caching out of the box.
 2. I would also write better and more units tests if time allowed.
-3. If I could include authenication, It enable the comment section to be realist by having just the comments' text input and get rid of the dummy recruiter field name.
+3. Include authenication to enable the comment section to be realist by having just the comments' text input and get rid of the dummy recruiter field name.
