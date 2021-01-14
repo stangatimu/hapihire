@@ -11,7 +11,7 @@ const reducer = (state = initial_state, action) => {
 	switch (action.type) {
 		case actions.GET_CANDIDATES:
 			return {
-				candidate: { data: action.data, loading: false },
+				candidate: action.data,
 			};
 		default:
 			return state;
