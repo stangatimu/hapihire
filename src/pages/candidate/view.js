@@ -20,7 +20,7 @@ const CandidateView = ({ data = [], loading }) => {
 			{/* show loader */}
 			{loading && <CircularProgress size={24} thickness={4} />}
 			{/* map candidates */}
-			{data?.id && (
+			{data?.name && (
 				<Grid
 					component={Paper}
 					container
