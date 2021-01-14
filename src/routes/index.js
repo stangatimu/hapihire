@@ -13,7 +13,10 @@ const Routes = () => {
 				}}
 			/>
 			{/* list of candidates */}
-			<Route path="/candidates" component={() => <Candidates />} />
+			<Route
+				path="/candidates"
+				component={() => <Candidates view={true} />}
+			/>
 			{/* view selected candited */}
 			<Route
 				path="/candidates/:id"
