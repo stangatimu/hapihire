@@ -5,13 +5,23 @@ let initial_state = {
 		loading: false,
 		data: [],
 	},
+	selected: {
+		loading: false,
+		data: {},
+	},
 };
 
 const reducer = (state = initial_state, action) => {
 	switch (action.type) {
 		case actions.GET_CANDIDATES:
 			return {
+				...state,
 				candidate: action.data,
+			};
+		case actions.GET_CANDIDATE_BY_ID:
+			return {
+				...state,
+				selected: action.data,
 			};
 		default:
 			return state;
