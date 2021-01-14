@@ -4,13 +4,15 @@ import { makeStore } from "../../utils/mock-store";
 import candidates from "../../utils/candidates.json";
 import { getCandidates } from "../../../redux/actions";
 import { GET_CANDIDATES } from "../../../redux/action-types";
+import axios from "axios";
 
 // mock store
 const store = makeStore({ candidates: { loading: false, data: [] } });
 
 describe("getCandidates -  should call the api and get candidates", () => {
-	beforeEach(() => moxios.install());
-	afterEach(() => moxios.uninstall());
+	let axiosInstance = axios.create();
+	beforeEach(() => moxios.install(axiosInstance));
+	afterEach(() => moxios.uninstall(axiosInstance));
 
 	test("should update state to loading on getCandidates", async () => {
 		moxios.wait(() => {

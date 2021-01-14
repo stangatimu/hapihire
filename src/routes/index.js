@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Redirect, Route } from "react-router-dom";
+import Candidates from "../pages/candidates";
 
 const Routes = () => {
 	return (
@@ -12,10 +13,7 @@ const Routes = () => {
 				}}
 			/>
 			{/* list of candidates */}
-			<Route
-				path="/candidates"
-				component={() => <p>list of candidates</p>}
-			/>
+			<Route path="/candidates" component={() => <Candidates />} />
 			{/* view selected candited */}
 			<Route
 				path="/candidates/:id"
