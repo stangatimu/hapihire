@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "ENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test --setupFiles ./src/setupTests.js",
     "eject": "react-scripts eject"
   },
