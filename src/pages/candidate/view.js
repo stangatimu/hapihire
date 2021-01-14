@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { Attachment, Room, Work } from "@material-ui/icons";
 import React from "react";
+import Comments from "../../components/comments";
 
 const CandidateView = ({ data = [], loading }) => {
 	return (
@@ -97,6 +98,12 @@ const CandidateView = ({ data = [], loading }) => {
 						) : (
 							<em>no resume submitted</em>
 						)}
+					</Grid>
+					<Grid item xs={12}>
+						<Typography style={{ color: "grey" }} variant="h6">
+							Leave a comment
+						</Typography>
+						<Comments candidate={data} />
 					</Grid>
 					<Grid />
 				</Grid>
