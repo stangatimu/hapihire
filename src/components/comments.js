@@ -6,32 +6,56 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCandidate } from "../redux/actions";
 
 const Comments = ({ candidate = [] }) => {
+	const dispatch = useDispatch();
+	// new comment data
 	const [comment_text, setCommentText] = useState({
 		text: "",
 		recruiter: "",
 	});
+
+	// select candidate from store ( loading, error, data )
+	const { loading } = useSelector((state) => state?.selected || {});
+
+	// handle form cs submit
 	const onFormSubmit = (e) => {
 		e.preventDefault();
-		// dispat update action
+		let updated_candidate = {
+			...candidate,
+			comments: [comment_text, ...candidate.comments],
+		};
+		// dispatch update
+		dispatch(updateCandidate(updated_candidate));
 	};
+
+	useEffect(() => {
+		if (!loading) {
+			setCommentText({
+				text: "",
+				recruiter: "",
+			});
+		}
+	}, [loading]);
 	return (
 		<Grid container item xs={13}>
-			<form style={{ width: "100%" }}>
+			<form onSubmit={onFormSubmit} style={{ width: "100%" }}>
 				<TextField
 					placeholder="Your comment here..."
 					multiline
 					fullWidth
 					rows={2}
 					rowsMax={6}
+					required
 					variant="outlined"
 					value={comment_text.text}
 					onChange={(e) =>
 						setCommentText({
-							text: e.target.value,
 							...comment_text,
+							text: e.target.value,
 						})
 					}
 				/>
@@ -41,13 +65,14 @@ const Comments = ({ candidate = [] }) => {
 					label="Recruiter"
 					multiline
 					fullWidth
+					required
 					variant="outlined"
 					value={comment_text.recruiter}
 					margin="dense"
 					onChange={(e) =>
 						setCommentText({
-							recruiter: e.target.value,
 							...comment_text,
+							recruiter: e.target.value,
 						})
 					}
 				/>
@@ -59,15 +84,17 @@ const Comments = ({ candidate = [] }) => {
 					direction="row"
 					justify="flex-end"
 				>
-					<Button
-						type="submit"
-						size="small"
-						variant="contained"
-						color="primary"
-						disabled={!comment_text}
-					>
-						Save
-					</Button>
+					{
+						<Button
+							type="submit"
+							size="small"
+							variant="contained"
+							color="primary"
+							disabled={!comment_text.text || loading}
+						>
+							Save
+						</Button>
+					}
 				</Grid>
 			</form>
 			{candidate.comments?.map((com) => (

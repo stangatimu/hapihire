@@ -71,3 +71,36 @@ export const getCandidateById = (id) => async (dispatch) => {
 		});
 	}
 };
+export const updateCandidate = (updatedCandidate) => async (dispatch) => {
+	// initalise loading
+	dispatch({
+		type: actions.GET_CANDIDATE_BY_ID,
+		data: {
+			loading: true,
+			data: updatedCandidate,
+		},
+	});
+	try {
+		await API.put("/candidates/" + updatedCandidate.id, updatedCandidate);
+
+		// store data in redux
+		dispatch({
+			type: actions.GET_CANDIDATE_BY_ID,
+			data: {
+				loading: false,
+				data: updatedCandidate,
+			},
+		});
+	} catch (e) {
+		// get error message
+		const error_message = handleAxiosError(e);
+		dispatch({
+			type: actions.GET_CANDIDATE_BY_ID,
+			data: {
+				loading: false,
+				data: updatedCandidate,
+				error: error_message,
+			},
+		});
+	}
+};
